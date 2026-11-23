@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080f21">
+  <meta name="description" content="Explore, descubra e aprenda com Elas na Ciência. Um jogo educativo sobre mulheres e diferentes formas de produzir conhecimento científico.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Elas na Ciência — jogar</title>
+  <link rel="stylesheet" href="player.css">
+  <link rel="icon" href="icon.png" type="image/png">
+</head>
+<body>
+  <main id="stage" aria-label="Elas na Ciência">
+    <canvas id="game" tabindex="0" title="Elas na Ciência. Use WASD ou as setas para andar e E para interagir." hidden></canvas>
+    <section id="loading" aria-labelledby="game-title">
+      <div class="card">
+        <p class="eyebrow">COLÉGIO TALENTOS · VERSÃO DE TESTES 1.1.2</p>
+        <h1 id="game-title">Elas na <span>Ciência</span></h1>
+        <p class="intro">Grandes mentes inspiram novas histórias.</p>
+        <div id="download" hidden>
+          <label for="progress" id="status">Carregando o jogo…</label>
+          <progress id="progress" max="1" value="0"></progress>
+          <p class="hint">A primeira abertura pode levar um pouco mais de tempo.</p>
+        </div>
+        <button id="start" type="button">JOGAR <span aria-hidden="true">▶</span></button>
+        <p id="error" role="alert" hidden></p>
+        <button id="retry" type="button" hidden>TENTAR NOVAMENTE</button>
+        <p class="hint">No celular, jogue com o aparelho de lado.<br>Use Safari no iPhone ou Chrome no Android.</p>
+        <p class="footer">Sem cadastro · Anotações salvas neste navegador</p>
+      </div>
+    </section>
+    <section id="rotate" aria-labelledby="rotate-title">
+      <div class="card">
+        <div class="phone" aria-hidden="true">↻</div>
+        <h2 id="rotate-title">Vire o celular</h2>
+        <p>Elas na Ciência foi feito para jogar na horizontal.</p>
+        <p class="hint">Desative o bloqueio de rotação e deixe o aparelho de lado.</p>
+      </div>
+    </section>
+  </main>
+  <script src="player.js"></script>
+</body>
+</html>
