@@ -12,6 +12,14 @@
   let started = false;
   // Unity adds its mobile keyboard to the body. Keep that input separate from
   // the loading card so its confirmation stays visible on narrow screens.
+  const viewport = window.visualViewport;
+  function fitKeyboard() {
+    if (!viewport || !document.querySelector(".unity-keyboard")) return;
+    const covered = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+    document.documentElement.style.setProperty("--keyboard-inset", Math.round(covered) + "px");
+  }
+  viewport?.addEventListener("resize", fitKeyboard);
+  viewport?.addEventListener("scroll", fitKeyboard);
   new MutationObserver(records => {
     for (const record of records) for (const node of record.addedNodes) {
       if (!(node instanceof HTMLElement) || node.parentElement !== document.body) continue;
@@ -19,7 +27,8 @@
       const done = node.querySelector("button");
       if (!input || !done) continue;
       node.classList.add("unity-keyboard");
-      input.setAttribute("aria-label", "Anotações do caderno");
+      fitKeyboard();
+      input.setAttribute("aria-label", input.tagName === "TEXTAREA" ? "Anotações do caderno" : input.placeholder || "Código da sala");
       done.textContent = "PRONTO";
       done.setAttribute("aria-label", "Concluir escrita");
     }
@@ -59,7 +68,7 @@
         fullscreenElementID: "stage",
         companyName: "Colégio Talentos",
         productName: "Elas na Ciência",
-        productVersion: "1.1.2",
+        productVersion: "1.2.0-beta.3",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2),
         showBanner: (message, type) => {
           if (type === "error") { console.error(message); showError(); }
